@@ -4,7 +4,7 @@ import javax.persistence.EntityManager
 import javax.persistence.Persistence
 
 object Banco {
-    fun getEntity(): EntityManager {
+    fun getEntityManager(): EntityManager {
         val factory = Persistence.createEntityManagerFactory("screensound")
         return factory.createEntityManager()
     }

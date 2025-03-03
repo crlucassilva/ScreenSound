@@ -15,7 +15,7 @@ abstract class DAO <TModel, TEntity>(
         return query.resultList.map{ entity -> toModel(entity)}
     }
 
-    open fun adiocionar(model: TModel) {
+    open fun adicionar(model: TModel) {
         val entity = toEntity(model)
         manager.transaction.begin()
         manager.persist(entity)
@@ -25,6 +25,7 @@ abstract class DAO <TModel, TEntity>(
     private fun recuperarEntityPeloId(id: Int) : TEntity {
         val query = manager
             .createQuery("FROM ${entityType.simpleName} WHERE id = :id", entityType)
+        query.setParameter("id", id)
         return query.singleResult
     }
 
